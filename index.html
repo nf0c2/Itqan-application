@@ -1,100 +1,181 @@
-<!doctype html>
-<html lang="ar" dir="rtl">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>أتقن</title>
+:root{
+  --beige:#F6F8ED;
+  --beige2:#F3EEE8;
+  --navy:#001F3E;
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+  --green:#00804D;
+  --green2:#0b6f4a;
 
-  <link rel="stylesheet" href="style.css" />
-</head>
+  --radius:28px;
+  --shadow:0 18px 42px rgba(0,0,0,.12);
+}
 
-<body>
-  <main class="wrap">
-    <header class="top">
-      <img class="logo" src="assets/logo.png" alt="Logo">
-      <h1 class="title"> أتقن</h1>
-      <p class="subtitle">تطبيق رقمي شامل لتعليم و تحفيظ القرآن.</p>
-    </header>
+*{box-sizing:border-box}
+html{
+  scroll-behavior:smooth;
+  scroll-padding-top:90px;
+}
+body{
+  margin:0;
+  font-family:"Cairo", sans-serif;
+  color:var(--navy);
+  background:
+    radial-gradient(900px 520px at 15% 10%, rgba(0,128,77,.12), transparent 60%),
+    radial-gradient(820px 520px at 85% 18%, rgba(0,31,62,.10), transparent 62%),
+    linear-gradient(180deg, var(--beige), var(--beige2));
+}
 
-    <section class="card" id="idea">
-      <h2>وصف الفكرة</h2>
-      <p>تطبيق رقمي ذكي شامل لتعليم وتحفيظ القرآن الكريم
-يحوّل الأسلوب التقليدي البطيء إلى رحلة تفاعلية مخصصة، تجمع بين تحليل التلاوة الصوتي بالذكاء الاصطناعي، ومغامرات تعليمية ممتعة للأطفال عبر شخصيات تقود مراحل مرتبطة بمهام حقيقية في التلاوة والحفظ والتفسير.
-يوفّر التطبيق خريطة تفاعلية للحلقات تعرض بياناتها الكاملة (المواقع، الأوقات، المستويات، المعلمين)، إلى جانب مسارات مبسطة لكبار السن وغير الناطقين بالعربية، ولوحات تحكم للمعلمين تمكّنهم من الإشراف الفعّال والمتابعة الدقيقة.
-      </p>
-    </section>
+/* ===== الشريط العلوي ===== */
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:rgba(246,248,237,.92);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(0,31,62,.12);
+}
+.topbar-inner{
+  width:min(1100px,94%);
+  margin:auto;
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-weight:900;
+  color:var(--navy);
+}
+.logo{width:36px;height:36px}
+.brand-name{font-size:16px}
 
-    <section class="card" id="vision">
-      <h2>الرؤية</h2>
-      <p>
-        بناء منظومة قرآنية عالمية حديثة تراعي الفروق الفردية والعمرية واللغوية، تجعل تعلّم كتاب الله تجربة يومية ممتعة ومستمرة عبر التقنيات المتقدمة،
-        لتقريب القرآن من قلوب الأطفال المحبين للألعاب، كبار السن الباحثين عن اليسر، وغير العرب الراغبين في نطق صحيح،
-        مع تسهيل الوصول للحلقات المناسبة لكل متعلم لضمان إتقان التلاوة والحفظ والتدبر في كل بيت عربي.
-      </p>
-    </section>
+.topnav{
+  display:flex;
+  gap:10px;
+  overflow-x:auto;
+  padding:12px 0;
+}
+.topnav a{
+  white-space:nowrap;
+  padding:8px 12px;
+  border-radius:14px;
+  font-weight:800;
+  color:var(--navy);
+  background:rgba(0,128,77,.06);
+  border:1px solid rgba(0,31,62,.12);
+}
 
-    <section class="card" id="problem">
-      <h2>المشكلة</h2>
-      <p>
-        تعاني منظومة تعليم وتحفيظ القرآن من ضعف شامل: بطء تقييم التلاوة يجبر المتعلم على الانتظار أيامًا لمعرفة أخطائه،
-        ضعف المتابعة الفردية مع تفاوت كبير بين مستويات الطلاب في الحلقة الواحدة،
-        ملل الأطفال لغياب التحفيز التفاعلي،
-        صعوبة كبار السن وغير الناطقين بالعربية في النطق الصحيح بدون أدوات تدريجية مبسطة،
-        وعدم وجود منصة موحدة تعرض مواقع الحلقات وبياناتها (عمرية، مستوى، أوقات، نوع تعليم) مع تسجيل سهل،
-        مما يرهق المعلمين تنظيميًا ويقلل استمرارية التعلم.
-      </p>
+/* ===== المحتوى ===== */
+.wrap{
+  width:min(980px,92%);
+  margin:24px auto 40px;
+}
 
-      <ul class="bullets">
-        <li>بطء التقييم والانتظار لمعرفة الأخطاء.</li>
-        <li>ضعف المتابعة الفردية وتفاوت المستويات داخل الحلقة.</li>
-        <li>ملل الأطفال بسبب غياب التحفيز التفاعلي.</li>
-        <li>صعوبة نطق كبار السن وغير الناطقين بالعربية بدون مسارات مبسطة.</li>
-        <li>غياب منصة موحدة لمواقع الحلقات وبياناتها والتسجيل.</li>
-      </ul>
-    </section>
+.hero{
+  text-align:center;
+  margin-bottom:26px;
+}
+.title{
+  font-size:52px;
+  font-weight:900;
+  margin:0;
+}
+.subtitle{
+  max-width:760px;
+  margin:10px auto 0;
+  line-height:2;
+  color:rgba(0,31,62,.7);
+}
 
-    <section class="card" id="impact">
-      <h2>الأثر</h2>
-      <p>
-        رفع مستوى إتقان التلاوة والحفظ عالميًا عبر تقييم فوري دقيق ومتابعة مخصصة،
-        تحويل ملل الأطفال إلى حماس يومي من خلال مغامرات مرتبطة بإنجازات قرآنية حقيقية،
-        تمكين كبار السن وغير العرب من نطق صحيح تدريجي يبني الثقة،
-        تخفيف 70% من أعباء المعلمين الروتينية (تقييم أولي، متابعة) للتركيز على الإرشاد الروحي،
-        تسهيل وصول المتعلمين والأهالي للحلقات المناسبة مما يزيد معدلات الالتزام والاستمرارية،
-        وتعزيز انتشار الثقافة القرآنية في المجتمعات المحلية والعالمية.
-      </p>
-    </section>
+/* ===== البوكس ===== */
+.card{
+  position:relative;
+  background:linear-gradient(135deg,var(--green),var(--green2));
+  border-radius:var(--radius);
+  padding:22px 24px;
+  margin:16px 0;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+  scroll-margin-top:100px;
+}
 
-    <section class="card" id="innovation">
-      <h2>الابتكار والإبداع</h2>
-      <p>
-        دمج ثوري لتحليل صوتي ذكي يقيّم التلاوة فورًا بدقة تصل 95% (مخارج، تجويد، وقفات) مع خطط تعليم مخصصة لكل متعلم،
-        مغامرات gamified للأطفال حيث شخصية تفاعلية تقود عبر عوالم قرآنية لا يتقدم الطفل فيها إلا بعد إتقان آية أو حفظ جزء مع تفسير مبسط،
-        مسارات نطق تدريجية مدعومة AI لكبار السن وغير العرب تبدأ من الأصوات الأساسية إلى التلاوة الكاملة،
-        خريطة حلقات جغرافية تفاعلية تربط المتعلم بالمعلم المناسب فورًا،
-        كل ذلك في منصة واحدة تحول التعلم من واجب إلى مغامرة ملتزمة وممتعة.
-      </p>
-    </section>
+/* توهج متحرك */
+.card::before{
+  content:"";
+  position:absolute;
+  inset:-40%;
+  background:
+    radial-gradient(320px 240px at 20% 30%, rgba(246,248,237,.85), transparent 62%),
+    radial-gradient(380px 260px at 80% 35%, rgba(243,238,232,.75), transparent 62%);
+  filter:blur(22px);
+  animation:glow 7s ease-in-out infinite;
+}
+@keyframes glow{
+  0%{transform:translate(-10%,-6%)}
+  50%{transform:translate(8%,8%)}
+  100%{transform:translate(-10%,-6%)}
+}
 
-    <section class="card" id="solution">
-      <h2>الحل</h2>
-      <p>منصة متكاملة تضم:</p>
-      <ul class="bullets">
-        <li>محرك AI لتحليل التلاوة الصوتي فوري مع تصحيح أخطاء وخطط تدريب مخصصة.</li>
-        <li>مغامرات تعليمية للأطفال عبر شخصيات تقيس التقدم الحقيقي قبل فتح المرحلة التالية.</li>
-        <li>مسارات مبسطة لكبار السن وغير العرب مع تدريب نطقي خطوة بخطوة.</li>
-        <li>خريطة تفاعلية تعرض آلاف الحلقات ببياناتها (موقع، وقت، مستوى، معلم، سعر) مع تسجيل/تواصل واحد كليك.</li>
-        <li>لوحات تحكم للمعلمين بتقارير فورية وتنبيهات للحالات الخاصة لتقليل الروتين.</li>
-      </ul>
-    </section>
+/* ===== العناوين كحلي ===== */
+.card h2{
+  color:var(--navy);
+  font-size:26px;
+  margin:0 0 14px;
+  border-bottom:1px solid rgba(0,31,62,.25);
+  padding-bottom:10px;
+}
 
-    <footer class="foot">
-      <span>© 2026 — منصة القرآن الذكية</span>
-    </footer>
-  </main>
-</body>
-</html>
+/* النص */
+.card p{
+  background:rgba(246,248,237,.96);
+  border-radius:18px;
+  padding:16px;
+  font-weight:700;
+  line-height:2.1;
+}
+
+/* زر الصعود */
+.toTop{
+  position:fixed;
+  bottom:14px;
+  left:14px;
+  width:46px;
+  height:46px;
+  border-radius:16px;
+  border:none;
+  background:rgba(246,248,237,.95);
+  box-shadow:0 12px 28px rgba(0,0,0,.2);
+  font-size:20px;
+  font-weight:900;
+  opacity:0;
+  pointer-events:none;
+  transition:.2s;
+}
+.toTop.show{
+  opacity:1;
+  pointer-events:auto;
+}
+
+/* ===== الجوال ===== */
+@media(max-width:720px){
+  .topbar-inner{flex-wrap:wrap}
+  .title{font-size:34px}
+  .card{padding:16px}
+  .card h2{font-size:22px}
+  .card p{font-size:15px}
+}
+.logoFake{
+  width:36px;
+  height:36px;
+  border-radius:12px;
+  display:grid;
+  place-items:center;
+  font-weight:900;
+  color: var(--navy);
+  background: rgba(0,128,77,.14);
+  border: 1px solid rgba(0,31,62,.18);
+  box-shadow: 0 10px 22px rgba(0,0,0,.10);
+  user-select:none;
+}
